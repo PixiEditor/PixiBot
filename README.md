@@ -2,11 +2,11 @@
 
 ---
 
-**PixiBot** is a [Discord](https://discord.com) Bot whose able to parse .pixi files and encode them to a high res png image.
+**PixiBot** is a [Discord](https://discord.com) Bot who's able to parse .pixi files and encode them to a high res png image.
 
 All you have to do is send a .pixi file in any channel and PixiBot will automatically respond with the upscaled png version.
 
-# About PixiBot
+# :question: About PixiBot
 
 PixiBot is a .NET 6 console application written in C#
 
@@ -14,19 +14,29 @@ It uses [Discord.Net](https://github.com/discord-net/Discord.Net) to connect to 
 
 <img src="https://user-images.githubusercontent.com/45312141/143664509-1919f9fb-8fc7-41e8-8192-c8547f427128.png" width="300">
 
-# Invite
+# :arrow_right: Invite
 
 Currently, we host PixiBot only for our [own server](https://discord.gg/qSRMYmq).
 
-You can however host the bot yourself in any environment that can run .NET 5 Console Applications.
+You can however host the bot yourself in any environment that can run .NET 6 Console Applications.
 
-# Self-Hosting
+# :gear: Current Features
+
+* Parse .pixi files and upscale them
+
+# :soon: Planned Features
+
+* Commands for working with images
+
+* Support for more common file types
+
+# :runner: Self-Hosting
 
 We provide [binaries](https://github.com/PixiEditor/PixiBot/releases/latest) for Windows and Linux
 
 The bot runs perfectly fine on a Raspberry Pi 4
 
-## Getting started
+## :fast_forward: Getting started
 
 NOTE: For the bot to stay awake all the time you will need to run the whole time.
 
@@ -46,7 +56,7 @@ Just download the correct binary from the [releases](https://github.com/PixiEdit
 
 After the download is complete you will need to extract the ZIP to be able to use the client.
 
-### :gear: Configure the Bot
+### :wrench: Configure the Bot
 
 You will need to tell the bot how it can log into Discord
 
@@ -77,10 +87,10 @@ This step depends on your OS
 
 #### Windows
 
-Just run the `PixiEditor.exe`
+Just run the `PixiBot.exe`
 
 #### Linux
 
 Open a terminal in your Bot's directory
 
-Run the command `.\PixiEditor` (you can also append & to the end to run the bot in the background)
+Run the command `.\PixiBot` (you can also append & to the end to run the bot in the background)
