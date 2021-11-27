@@ -93,4 +93,4 @@ Just run the `PixiBot.exe`
 
 Open a terminal in your Bot's directory
 
-Run the command `.\PixiEditor` (you can also append & to the end to run the bot in the background)
+Run the command `.\PixiBot` (you can also append & to the end to run the bot in the background)
