@@ -87,7 +87,7 @@ This step depends on your OS
 
 #### Windows
 
-Just run the `PixiEditor.exe`
+Just run the `PixiBot.exe`
 
 #### Linux
 
