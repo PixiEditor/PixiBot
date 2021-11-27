@@ -4,6 +4,7 @@
         <TargetFramework>net6.0</TargetFramework>
         <RootNamespace>PixiEditor.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
         <ImplicitUsings>enable</ImplicitUsings>
+        <AssemblyVersion>1.0</AssemblyVersion>
     </PropertyGroup>
 
     <ItemGroup>
