@@ -7,6 +7,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <AssemblyVersion>1.0</AssemblyVersion>
         <DebugType>embedded</DebugType>
+        <AssemblyName>PixiBot</AssemblyName>
     </PropertyGroup>
 
     <ItemGroup>

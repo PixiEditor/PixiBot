@@ -18,7 +18,7 @@ It uses [Discord.Net](https://github.com/discord-net/Discord.Net) to connect to 
 
 Currently, we host PixiBot only for our [own server](https://discord.gg/qSRMYmq).
 
-You can however host the bot yourself in any environment that can run .NET 6 Console Applications.
+You can however host the bot yourself in any environment that can run .NET 6 Console Applications and supports [SkiaSharp](https://github.com/mono/SkiaSharp).
 
 # :gear: Current Features
 

@@ -9,7 +9,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Discord.Net.Labs" Version="3.3.3" />
+        <PackageReference Include="Discord.Net.Labs" Version="3.4.6" />
         <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.0" />
         <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="6.0.0" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
@@ -17,6 +17,7 @@
         <PackageReference Include="PixiEditor.Parser" Version="2.0.0" />
         <PackageReference Include="PixiEditor.Parser.Skia" Version="2.0.0" />
         <PackageReference Include="SkiaSharp" Version="2.80.3" />
+        <PackageReference Include="SkiaSharp.NativeAssets.Linux" Version="2.80.3" />
     </ItemGroup>
 
     <ItemGroup>
