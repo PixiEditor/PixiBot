@@ -5,6 +5,7 @@
         <RootNamespace>PixiEditor.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
         <ImplicitUsings>enable</ImplicitUsings>
         <AssemblyVersion>1.0</AssemblyVersion>
+        <DebugType>embedded</DebugType>
     </PropertyGroup>
 
     <ItemGroup>
