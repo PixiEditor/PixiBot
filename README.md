@@ -38,7 +38,7 @@ The bot runs perfectly fine on a Raspberry Pi 4
 
 ## :fast_forward: Getting started
 
-NOTE: For the bot to stay awake all the time you will need to run the whole time.
+NOTE: For the bot to stay awake all the time you will need to run the client whole time.
 
 ### :heavy_plus_sign: Create a bot account
 
