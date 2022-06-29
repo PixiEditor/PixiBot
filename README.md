@@ -18,7 +18,7 @@ It uses [Discord.Net](https://github.com/discord-net/Discord.Net) to connect to 
 
 Currently, we host PixiBot only for our [own server](https://discord.gg/qSRMYmq).
 
-You can however host the bot yourself in any environment that can run .NET 6 Console Applications and supports [SkiaSharp](https://github.com/mono/SkiaSharp).
+You can however host the bot yourself in any environment that can run a .NET 6 Console Applications and supports the [SkiaSharp](https://github.com/mono/SkiaSharp) library.
 
 # :gear: Current Features
 
@@ -38,7 +38,7 @@ The bot runs perfectly fine on a Raspberry Pi 4
 
 ## :fast_forward: Getting started
 
-NOTE: For the bot to stay awake all the time you will need to run the client whole time.
+NOTE: The bot will only be able to respond while the client is running.
 
 ### :heavy_plus_sign: Create a bot account
 
@@ -60,9 +60,9 @@ After the download is complete you will need to extract the ZIP to be able to us
 
 You will need to tell the bot how it can log into Discord
 
-1. Go back to the bot's profile in the Developer Portal and click copy where it says Token. 
+1. Go back to the bot's profile in the Developer Portal, click the "Reset Token" button and hit Copy to copy the token to your clipboard.
 
-    NOTE: Only share this token with someone you trust! You have full control over the bot with this token
+    NOTE: Only share this token with someone you trust! Anyone with that token has full control over your bot.
 
 2. Create a file called `appsettings.json` and open it in your favorite text editor
 
