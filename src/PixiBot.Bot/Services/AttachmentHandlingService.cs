@@ -31,11 +31,28 @@ public class AttachmentHandlingService : IMessageHandler
 
             Func<Task> removeEmoji = await MarkLoadingEmojiAsync(message);
 
-            Document document = await _httpClient.GetDocumentAsync(file);
-            _logger.LogDebug(".pixi from msg id: {message} downloaded", message.Id);
-            await HandlePixiFile(document, file, message);
+            try
+            {
+                Document document = await _httpClient.GetDocumentAsync(file);
+                _logger.LogDebug(".pixi from msg id: {message} downloaded", message.Id);
+                await HandlePixiFile(document, file, message);
+            }
+            catch (InvalidFileException e)
+            {
+                await message.ReplyAsync("Your file appears to be corrupted. :(");
+                _logger.LogInformation("Invalid file exception\nMessage: {MessageLink}\nException: {Exception}", message.GetJumpUrl(), e);
+            }
+            catch (Exception e)
+            {
+                await message.ReplyAsync("There was an error handling your image. :(");
+                _logger.LogError("Handling file has thrown a exception\nMessage: {MessageLink}\nException: {Exception}", message.GetJumpUrl(), e);
+                return false;
+            }
+            finally
+            {
+                await removeEmoji();
+            }
 
-            await removeEmoji();
 
             return true;
         }
