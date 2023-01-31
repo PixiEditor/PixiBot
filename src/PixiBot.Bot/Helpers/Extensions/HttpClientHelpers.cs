@@ -4,7 +4,7 @@ namespace PixiEditor.PixiBot.Bot.Helpers.Extensions;
 
 public static class HttpClientHelpers
 {
-    public static async Task<SerializableDocument> GetDocumentAsync(this HttpClient client, string url)
+    public static async Task<Document> GetDocumentAsync(this HttpClient client, string url)
     {
         using HttpResponseMessage message = await client.GetAsync(url);
         using Stream stream = await message.Content.ReadAsStreamAsync();
@@ -12,6 +12,6 @@ public static class HttpClientHelpers
         return PixiParser.Deserialize(stream);
     }
 
-    public static async Task<SerializableDocument> GetDocumentAsync(this HttpClient client, IAttachment attachment) =>
+    public static async Task<Document> GetDocumentAsync(this HttpClient client, IAttachment attachment) =>
         await client.GetDocumentAsync(attachment.Url);
 }

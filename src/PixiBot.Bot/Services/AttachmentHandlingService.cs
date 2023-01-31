@@ -31,7 +31,7 @@ public class AttachmentHandlingService : IMessageHandler
 
             Func<Task> removeEmoji = await MarkLoadingEmojiAsync(message);
 
-            SerializableDocument document = await _httpClient.GetDocumentAsync(file);
+            Document document = await _httpClient.GetDocumentAsync(file);
             _logger.LogDebug(".pixi from msg id: {message} downloaded", message.Id);
             await HandlePixiFile(document, file, message);
 
@@ -43,10 +43,10 @@ public class AttachmentHandlingService : IMessageHandler
         return false;
     }
 
-    private async Task HandlePixiFile(SerializableDocument document, IAttachment original, IUserMessage message)
+    private async Task HandlePixiFile(Document document, IAttachment original, IUserMessage message)
     {
-        using SKBitmap bitmap = document.ToSKBitmap().Resize(400, true);
-        using Stream stream = bitmap.Encode(SKEncodedImageFormat.Png, 100).AsStream();
+        using SKBitmap bitmap = SKImage.FromEncodedData(document.PreviewImage).Resize(400, true);
+        await using Stream stream = bitmap.Encode(SKEncodedImageFormat.Png, 100).AsStream();
 
         _logger.LogDebug(".pixi from msg id: {message} encoded", message.Id);
 
