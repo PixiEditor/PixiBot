@@ -6,10 +6,10 @@ public static class MessageHelpers
                                                           Stream stream,
                                                           string fileName,
                                                           string text = null,
-                                                          MessageComponent component = null) =>
+                                                          MessageComponent components = null) =>
         await message.Channel.SendFileAsync(
             new FileAttachment(stream, fileName),
             text,
-            component: component,
+            components: components,
             messageReference: new MessageReference(message.Id));
 }

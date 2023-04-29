@@ -2,25 +2,25 @@
 
 public static class EnumerableHelpers
 {
-    public static bool TryFirstPixiFile<T>(this IEnumerable<T> attachments, out T attachment) where T : IAttachment =>
-        FirstFile(attachments, ".pixi", out attachment);
+    public static bool TryAllPixiFiles<T>(this IEnumerable<T> attachments, out IEnumerable<T> attachment) where T : IAttachment =>
+        AllFiles(attachments, ".pixi", out attachment);
 
-    public static bool TryFirstImageFile<T>(this IEnumerable<T> attachments, out T attachment) where T : IAttachment =>
-        FirstFile(attachments, out attachment, ".png", ".jpeg", ".jpg");
+    public static bool TryAllImageFiles<T>(this IEnumerable<T> attachments, out IEnumerable<T> attachment) where T : IAttachment =>
+        AllFiles(attachments, out attachment, ".png", ".jpeg", ".jpg");
 
-    private static bool FirstFile<T>(IEnumerable<T> attachments, string extension, out T attachment)
+    private static bool AllFiles<T>(IEnumerable<T> attachments, string extension, out IEnumerable<T> attachment)
         where T : IAttachment
     {
-        attachment = attachments.FirstOrDefault(x => Path.GetExtension(x.Filename) == extension);
+        attachment = attachments.Where(x => Path.GetExtension(x.Filename) == extension);
 
-        return attachment is not null;
+        return attachment.Any();
     }
 
-    private static bool FirstFile<T>(IEnumerable<T> attachments, out T attachment, params string[] extensions)
+    private static bool AllFiles<T>(IEnumerable<T> attachments, out IEnumerable<T> attachment, params string[] extensions)
         where T : IAttachment
     {
-        attachment = attachments.FirstOrDefault(x => extensions.Contains(Path.GetExtension(x.Filename)));
+        attachment = attachments.Where(x => extensions.Contains(Path.GetExtension(x.Filename)));
 
-        return attachment is not null;
+        return attachment.Any();
     }
 }
