@@ -8,7 +8,7 @@ All you have to do is send a .pixi file in any channel and PixiBot will automati
 
 # :question: About PixiBot
 
-PixiBot is a .NET 6 console application written in C#
+PixiBot is a .NET 7 console application written in C#
 
 It uses [Discord.Net](https://github.com/discord-net/Discord.Net) to connect to the Discord API, [PixiParser](https://github.com/PixiEditor/PixiParser) to parse .pixi files and [SkiaSharp](https://github.com/mono/SkiaSharp) for rendering the files to a upscaled version png version
 
@@ -48,8 +48,6 @@ You will need a Discord bot account if you want to connect to Discord. If you al
 
 2. Click on the "New Application" button and give your new application a name, you can just use your Bot's name
 
-3. Now you can create a Bot by going in the Bot tab and hitting the "Add Bot" button, this will create the Bot account. This action is irreversible!
-
 ### :cd: Download and install the bot client
 
 Just download the correct binary from the [releases](https://github.com/PixiEditor/PixiBot/releases/latest) for the machine you will use or you can build it yourself.
@@ -60,13 +58,15 @@ After the download is complete you will need to extract the ZIP to be able to us
 
 You will need to tell the bot how it can log into Discord
 
-1. Go back to the bot's profile in the Developer Portal, click the "Reset Token" button and hit Copy to copy the token to your clipboard.
+1. Go to the Bot tab in the Discord Developer Portal and enable Message Content Intent
+
+2. Click the "Reset Token" button and hit Copy to copy the token to your clipboard.
 
     NOTE: Only share this token with someone you trust! Anyone with that token has full control over your bot.
 
-2. Create a file called `appsettings.json` and open it in your favorite text editor
+3. Create a file called `appsettings.json` and open it in your favorite text editor
 
-3. Put in the following JSON data and replace the <bot-token> with your actual bot token (Do not remove any quotation marks!)
+4. Put in the following JSON data and replace the <bot-token> with your actual bot token (Do not remove any quotation marks!)
 
 ```json
 {
@@ -74,12 +74,14 @@ You will need to tell the bot how it can log into Discord
         "BotToken": "<bot-token>"
     },
     "Discord": {
-        "GatewayIntents": "GuildMessages, DirectMessages, Guilds"
+        "GatewayIntents": "GuildMessages, DirectMessages, Guilds, MessageContent"
     }
 }
 ```
 
 The GatewayIntents tell Discord what the Bot want's to be notified about, if you don't want your Bot to respond to direct messages you can just remove the DirectMessage from the intents
+
+You find additional configuration options, like adding a loading emoji or specifying in which channel the Bot works [here](https://github.com/PixiEditor/PixiBot/wiki/Configuration)
 
 ### :arrow_forward: Run the bot
 
@@ -91,6 +93,8 @@ Just run the `PixiBot.exe`
 
 #### Linux
 
-Open a terminal in your Bot's directory
+Just run the `PixiBot` executable file
 
-Run the command `.\PixiBot` (you can also append & to the end to run the bot in the background)
+If you can't run, you might have to mark the file as executable by opening a terminal in the bots directory and running `sudo chmod +x ./PixiBot`
+
+You can also follow this tutorial to set up PixiBot with systemd to make managing easier [here](https://github.com/PixiEditor/PixiBot/wiki/Systemd)
