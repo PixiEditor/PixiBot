@@ -27,25 +27,39 @@ public class AttachmentHandlingService : IMessageHandler
     {
         if (!FileAllowed(message.Channel.Id, ".pixi") || !message.Attachments.TryAllPixiFiles(out var files))
             return false;
-        
-        foreach (var file in files)
-        {
-            await HandleFileAsync(message, file);
-        }
+
+        _ = Task.Run(async () => await HandleFilesAsync(message, files));
 
         return true;
     }
 
-    private async Task HandleFileAsync(IUserMessage message, IAttachment file)
+    private async Task HandleFilesAsync(IUserMessage message, IEnumerable<IAttachment> files)
     {
-        _logger.LogDebug("Received .pixi file by {user} in {channel}, message id: {message}", message.Author.Id,
-            message.Channel.Id, message.Id);
-
         var removeEmoji = await MarkLoadingEmojiAsync(message);
 
         try
         {
-            var document = await _httpClient.GetDocumentAsync(file);
+            var tasks = files.Select(async file => (Document: await _httpClient.GetDocumentAsync(file), File: file));
+            var results = await Task.WhenAll(tasks);
+            
+            foreach (var result in results)
+            {
+                await HandleFileAsync(message, result.Document, result.File);
+            }
+        }
+        finally
+        {
+            await removeEmoji();
+        }
+    }
+
+    private async Task HandleFileAsync(IUserMessage message, Document document, IAttachment file)
+    {
+        _logger.LogDebug("Received .pixi file by {user} in {channel}, message id: {message}", message.Author.Id,
+            message.Channel.Id, message.Id);
+
+        try
+        {
             _logger.LogDebug(".pixi from msg id: {message} downloaded", message.Id);
             await HandlePixiFile(document, file, message);
         }
@@ -61,10 +75,6 @@ public class AttachmentHandlingService : IMessageHandler
             _logger.LogError(
                 "Handling file has thrown a exception\nMessage: {MessageLink}\nException: {Exception}",
                 message.GetJumpUrl(), e);
-        }
-        finally
-        {
-            await removeEmoji();
         }
     }
 
